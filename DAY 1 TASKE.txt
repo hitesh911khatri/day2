@@ -1,0 +1,163 @@
+1.HTTP/1.1 to HTTP/2
+2.Objects And Its Internal Representation In JavaScript.
+
+
+
+If we’re going to talk about the transition from HTTP/1.1 to HTTP/2, it’s worth taking a quick trip back to the flannel-soaked 1990s. Back then, HTTP was a simple protocol for a simple job – transporting documents from a web server to your computer as efficiently as possible. This is because the web was simple, made up of documents and a spattering of images that were no sweat for the hardware of the time to sling around.
+
+HTTP, which stands for Hypertext Transfer Protocol, saw wide adoption in the early 1990s to facilitate this, transferring “hypertext” documents. These were simple documents comprising mostly text and a few images, marked up with HTML to add formatting and links to other hypertext documents. By 1996, the 1.0 specification was adopted. This version was elegant and simple for the needs of the mid-90s web – make a connection, download a file, close the connection, and repeat for each file needed to display a web page.
+
+By the tail end of the 90s, however, things began to change. The web was rapidly evolving beyond a glorified worldwide Choose Your Own Adventure full of linked documents to click through. People began buying and selling things, necessitating security. In addition to images, people wanted to watch videos and edit documents and send goofy animated greeting cards from their browsers. The strategy of one connection, one file was quite slow for these new use-cases.
+
+So, in 1999, the w3 overseeing body updated the HTTP spec to version 1.1. This version was a bit of a stopgap, adding features to the 1.0 specification meant to improve the speed and efficiency of web servers powering this new “hypermedia” version of the web.
+
+And then, the innovation kind of… stalled. As I’m sure you’re aware, the web changed more between 1999 and 2015 than it did between 1996 and 1999, but for those 16 years, we lived HTTP/1.1 specification, shoehorning more and more modern applications into the aging specification.
+
+The HTTP/1.1 To HTTP/2 Transition
+The breaking point in HTTP/1.1 was reached well before the 2015 introduction of HTTP/2. In fact, Google was working on its own replacement for HTTP/1.1 since the early 2010s, called SPDY (pronounced “speedy”). This protocol used the existing infrastructure built for HTTP/1.1, but modified how the requests worked over the infrastructure. SPDY used multiplexing to download multiple resources efficiently over a single connection and could be “back-ported” to existing applications with a translation layer.
+
+It makes sense that Google would take the lead on this, as they had been developing increasingly complex web-based applications that operated more like desktop applications than websites, like Gmail and Google Apps. In fact, the SPDY protocol was so well-designed, W3 used it as the basis for HTTP/2.
+
+So, in 2015, w3 officially adopted the HTTP/2 specification based on SPDY, and all major browsers began supporting the protocol.
+
+Why HTTP/2 Is Faster Than HTTP/1.1
+Today, the concept of “webpages” is anachronistic, in much the same way as “videotaping” something with your smartphone. Modern websites function much more like applications, with a constant two-way stream of data being an essential part of their functionality.
+
+For example, when you’re typing something in a Google Doc, as I am typing this article right now, every keystroke sends data to Google’s servers. Google’s servers process that data, and then send updates back to your browser with the text you’ve typed, along with other helpful information like suggestions, the last edit status of the document, and much more. Over HTTP/1.1, each of your keypresses would initiate a new connection to the server, to send each character you typed over the wire. Then, your browser would have to constantly “ping” Google’s server to see if the status of the document changed, to add the character to the screen you’re looking at. That’s a boatload of connections, and each one takes precious time.
+
+With HTTP/2 though, it’s essentially a constant two-way stream over a single connection. Google’s server is always listening for data coming from your browser, and your browser is always listening for data to come back from Google. There’s no more send data, wait for response, update the screen, send more data, wait for a response, etc. Instead, everything happens in real-time. In this way, a web “page” like a Google Doc can update itself so frequently as to feel like a native application on your computer.
+
+These are the high-level differences between HTTP1 and HTTP2:
+
+HTTP2 is binary, instead of textual
+HTTP2 is fully multiplexed, instead of ordered and blocking
+HTTP2 can, therefore, use one connection for parallelism
+HTP2 uses header compression to reduce overhead
+HTTP2 allows servers to “push” responses proactively into client caches
+Why You Should Switch To HTTP/2
+When Greenlane performs technical audits of websites, switching from HTTP/1.1 to HTTP/2 is one of the most common, and impactful recommendations that we make. We can often dramatically improve the performance of a website, with very little cost or time expenditure.
+
+Perhaps your business does not have any dynamic components. Perhaps your pages are primarily static compositions of text and images, just like the old days of the web. This is great – in your case, HTTP/2 is extremely low-hanging fruit! Simply upgrading your hosting to use HTTP/2 will dramatically speed up the delivery of your content to users, as all of your page’s content will come down the pipe on one connection instead of over multiple connections.
+
+It’s so important, that this is likely a pass/fail test in Google’s algorithm – if we use Google’s Lighthouse to test a page, the tool doesn’t even offer recommendations to improve your HTTP/1.1 delivery – it simply says to upgrade to HTTP/2.
+
+
+
+
+
+
+
+2.Objects And Its Internal Representation In JavaScript
+
+
+Objects, in JavaScript, is it’s most important data-type and forms the building blocks for modern JavaScript. These objects are quite different from JavaScript’s primitive data-types(Number, String, Boolean, null, undefined and symbol) in the sense that while these primitive data-types all store a single value each (depending on their types).
+
+Objects are more complex and each object may contain any combination of these primitive data-types as well as reference data-types.
+An object, is a reference data type. Variables that are assigned a reference value are given a reference or a pointer to that value. That reference or pointer points to the location in memory where the object is stored. The variables don’t actually store the value.
+
+Loosely speaking, objects in JavaScript may be defined as an unordered collection of related data, of primitive or reference types, in the form of “key: value” pairs. These keys can be variables or functions and are called properties and methods, respectively, in the context of an object.
+
+For Eg. If your object is a student, it will have properties like name, age, address, id, etc and methods like updateAddress, updateNam, etc.
+
+Objects and properties
+A JavaScript object has properties associated with it. A property of an object can be explained as a variable that is attached to the object. Object properties are basically the same as ordinary JavaScript variables, except for the attachment to objects. The properties of an object define the characteristics of the object. You access the properties of an object with a simple dot-notation:
+
+objectName.propertyName
+Like all JavaScript variables, both the object name (which could be a normal variable) and property name are case sensitive. You can define a property by assigning it a value. For example, let’s create an object named myCar and give it properties named make, model, and year as follows:
+
+var myCar = new Object();
+myCar.make = 'Ford';
+myCar.model = 'Mustang';
+myCar.year = 1969;
+Unassigned properties of an object are undefined (and not null).
+
+myCar.color; // undefined
+Properties of JavaScript objects can also be accessed or set using a bracket notation (for more details see property accessors). Objects are sometimes called associative arrays, since each property is associated with a string value that can be used to access it. So, for example, you could access the properties of the myCar object as follows:
+
+myCar['make'] = 'Ford';
+myCar['model'] = 'Mustang';
+myCar['year'] = 1969;
+An object property name can be any valid JavaScript string, or anything that can be converted to a string, including the empty string. However, any property name that is not a valid JavaScript identifier (for example, a property name that has a space or a hyphen, or that starts with a number) can only be accessed using the square bracket notation. This notation is also very useful when property names are to be dynamically determined (when the property name is not determined until runtime). Examples are as follows:
+
+// four variables are created and assigned in a single go, 
+// separated by commas
+var myObj = new Object(),
+    str = 'myString',
+    rand = Math.random(),
+    obj = new Object();
+myObj.type              = 'Dot syntax';
+myObj['date created']   = 'String with space';
+myObj[str]              = 'String value';
+myObj[rand]             = 'Random Number';
+myObj[obj]              = 'Object';
+myObj['']               = 'Even an empty string';console.log(myObj);
+You can also access properties by using a string value that is stored in a variable:
+
+var propertyName = 'make';
+myCar[propertyName] = 'Ford';propertyName = 'model';
+myCar[propertyName] = 'Mustang';
+You can use the bracket notation with for...in to iterate over all the enumerable properties of an object. To illustrate how this works, the following function displays the properties of the object when you pass the object and the object's name as arguments to the function:
+
+function showProps(obj, objName) {
+  var result = ``;
+  for (var i in obj) {
+    // obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
+    if (obj.hasOwnProperty(i)) {
+      result += `${objName}.${i} = ${obj[i]}\n`;
+    }
+  }
+  return result;
+}
+So, the function call showProps(myCar, "myCar") would return the following:
+
+myCar.make = Ford
+myCar.model = Mustang
+myCar.year = 1969
+Creating Objects In JavaScript :
+Create JavaScript Object with Object Literal
+One of easiest way to create a javascript object is object literal, simply define the property and values inside curly braces as shown below
+
+let bike = {name: 'SuperSport', maker:'Ducati', engine:'937cc'};
+Create JavaScript Object with Constructor
+Constructor is nothing but a function and with help of new keyword, constructor function allows to create multiple objects of same flavor as shown below
+
+function Vehicle(name, maker) {
+   this.name = name;
+   this.maker = maker;
+}
+let car1 = new Vehicle(’Fiesta’, 'Ford’);
+let car2 = new Vehicle(’Santa Fe’, 'Hyundai’)
+console.log(car1.name);    //Output: Fiesta
+console.log(car2.name);    //Output: Santa Fe
+Using the JavaScript Keyword new
+The following example also creates a new JavaScript object with four properties:
+
+Example
+
+var person = new Object();
+person.firstName = “John”;
+person.lastName = “Doe”;
+person.age = 50;
+person.eyeColor = “blue”;
+
+Using the Object.create method
+Objects can also be created using the Object.create() method. This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function.
+
+// Animal properties and method encapsulation
+var Animal = {
+  type: 'Invertebrates', // Default value of properties
+  displayType: function() {  // Method which will display type of Animal
+    console.log(this.type);
+  }
+};
+// Create new animal type called animal1 
+var animal1 = Object.create(Animal);
+animal1.displayType(); // Output:Invertebrates
+// Create new animal type called Fishes
+var fish = Object.create(Animal);
+fish.type = 'Fishes';
+fish.displayType(); 
+// Output:Fishes
+3
+
+
