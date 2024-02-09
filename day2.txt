@@ -1,0 +1,33 @@
+1.window is the execution context and global object for that context's JavaScript
+2.document contains the DOM, initialized by parsing HTML
+
+
+1.window
+Each browser tab has its own top-level window object. 
+Each <iframe> (and deprecated <frame>) element has its own window object too, nested within a parent window. 
+Each of these windows gets its own separate global object. 
+window.window always refers to window, but window.parent and window.
+top might refer to enclosing windows, giving access to other execution contexts. 
+In addition to document and screen described below, window properties include
+
+setTimeout() and setInterval() binding event handlers to a timer
+location giving the current URL
+history with methods back() and forward() giving the tab's mutable history
+navigator describing the browser software
+
+
+2.document
+Each window object has a document object to be rendered. 
+These objects get confused in part because
+ HTML elements are added to the global object when assigned a unique id. E.g., in the HTML snippet
+
+<body>
+  <p id="holyCow"> This is the first paragraph.</p>
+</body>
+the paragraph element can be referenced by any of the following:
+
+window.holyCow or window["holyCow"]
+document.getElementById("holyCow")
+document.querySelector("#holyCow")
+document.body.firstChild
+document.body.children[0]
